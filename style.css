@@ -1,0 +1,335 @@
+@charset "UTF-8";
+
+/* ----------------------------
+関数
+-----------------------------*/
+:root {
+    --main-color: #333;
+    --menu-color: #3b3b3b;
+    --text-light: #cbcbcb;
+    --white: #fff;
+}
+
+/* ----------------------------
+共通部分 
+-----------------------------*/
+html {
+    font-size: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+body {
+    color: #333;
+    font-size: 1rem;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+li {
+    list-style: none;
+}
+
+h2 {
+    scroll-margin-top: 100px;
+}
+
+/* ----------------------------
+共通クラス
+-----------------------------*/
+.wrapper {
+    max-width: 1200px;
+    padding: 0 16px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    margin: 1rem 0;
+}
+
+/* ---------------------------------------
+header
+------------------------------------------ */
+#header {
+    max-width: 100%;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+#header .site-title {
+    font-size: 1.5rem;
+    margin: 0;
+    padding: 10px 20px;
+    line-height: 1.5;
+}
+
+#header .site-title a {
+    display: inline-block;
+    color: #333;
+}
+
+.nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--main-color);
+}
+
+#header ul {
+    display: flex;
+    padding: 10px 0;
+}
+
+#header li {
+    margin-left: 20px;
+
+}
+
+#header a {
+    color: #cbcbcb;
+    font-size: 1rem;
+}
+
+#header a:hover {
+    opacity: 0.5;
+}
+
+.hamburger {
+    display: none;
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    z-index: 2000;
+    font-size: 1.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #333;
+}
+
+.hamburger.open {
+    color: #fff;
+}
+
+/* ---------------------------------------
+pickup
+------------------------------------------ */
+#pickup {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding-top: 150px;
+}
+
+/*  基準位置relative */
+#pickup .pickup-items {
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+#pickup .thumbnail {
+    display: block;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* 白レイヤー */
+#pickup .pickup-items::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+#pickup .article-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+    white-space: nowrap;
+}
+
+#pickup .article-title a {
+    text-decoration: none;
+    color: #333;
+}
+
+#pickup .pickup-items:hover::before,
+#pickup .pickup-items:hover .article-title {
+    opacity: 1;
+}
+
+/* ---------------------------------------
+skill
+------------------------------------------ */
+#container {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px auto;
+}
+
+main {
+    width: 70%;
+}
+
+main section {
+    margin-bottom: 40px;
+}
+
+.skill-container {
+    display: flex;
+    gap: 20px;
+}
+
+.skill-card {
+    width: 250px;
+    background: rgb(241, 244, 250);
+    border-radius: 1rem;
+    padding: 20px;
+}
+
+.skill-card h4 {
+    margin: 0.5rem 0;
+}
+
+.skill-card p {
+    font-size: 0.8rem;
+    margin: 0.5rem 0;
+}
+
+/* ---------------------------------------
+portfolio
+------------------------------------------*/
+#portfolio img {
+    width: 300px;
+    height: auto;
+}
+
+/* ---------------------------------------
+aside
+------------------------------------------ */
+#sidebar {
+    width: 25%;
+    padding: 20px;
+
+}
+
+#sidebar .side-title {
+    font-size: 1rem;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#sidebar p {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.learning-log ul {
+    text-align: center;
+    border-top: 1px solid #ccc;
+}
+
+.learning-log li {
+    font-size: 0.8rem;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+/* ---------------------------------------
+sp
+------------------------------------------ */
+@media screen and (max-width: 768px) {
+
+    /* header */
+    #header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .nav {
+        position: fixed;
+        transform: translateX(100%);
+        transition: right 0.3s ease;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #3b3b3bf7;
+        z-index: 1000;
+    }
+
+    .nav.open {
+        transform: translateX(0);
+        justify-content: center;
+    }
+
+    .nav-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-list li {
+        width: 100%;
+    }
+
+    .nav-list a {
+        display: block;
+        padding: 16px 0;
+    }
+
+    /* pickup */
+    #pickup {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* container */
+    #container {
+        flex-direction: column;
+    }
+
+    main {
+        width: 100%;
+    }
+
+    /* aside */
+    #sidebar {
+        width: 100%;
+        margin-top: 40px;
+    }
+}

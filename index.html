@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <meta name="description" content="テキスト(仮)">
+    <!-- ファビコン -->
+    <link rel="icon" href="テキスト(仮)">
+    <!-- リセットCSS -->
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <!-- オリジナルCSS -->
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/e1691fde90.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header id="header">
+        <h1 class="site-title">
+            <a href="my_portfolio.html">My Profile</a>
+        </h1>
+        <button class="hamburger">
+            ☰
+        </button>
+        <nav class="nav">
+            <ul class="nav-list">
+                <li><a href="#pickup">Pickup</a></li>
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+
+    </header>
+
+    <div id="pickup" class="wrapper">
+        <h2 class="section-title">Pickup</h2>
+        <div class="pickup-items">
+            <img src="/img/whale.png" width="300" height="200" class="thumbnail" alt="whale">
+            <div class="article-title"><a href="#">whale</a></div>
+        </div>
+
+        <div class="pickup-items">
+            <img src="/img/priestess.png" width="300" height="200" class="thumbnail" alt="priestess">
+            <div class="article-title"><a href="#">priestess</a></div>
+        </div>
+
+        <div class="pickup-items">
+            <img src="/img/return.png" width="300" height="200" class="thumbnail" alt="return">
+            <div class="article-title"><a href="#">return</a></div>
+        </div>
+    </div>
+
+    <div id="container" class="wrapper">
+        <main>
+            <div id="profile" class="section">
+                <h2 class="section-title">Profile</h2>
+                <p>動物看護師という異業種から現在はシステムエンジニアを目指している専門学生です。
+                    趣味のイラスト(上記Pinckup)からWEBデザインに興味を持ち、プログラミングを学ぶ過程で
+                    試行錯誤すること自体がとても楽しく、自分に合っていると感じてこの業界を選びました。
+                    新しいことに挑戦することや問題を解決をしていくことが好きです。
+                    まだまだ壁は高いですが、将来的にバックエンドエンジニアを目指して日々精進していきます。
+                </p>
+                <h4>《目標》</h4>7月末にITパスポート受験。基本情報技術者資格2月目標。
+                <h4>《学習予定》</h4>PHP,react
+
+            </div>
+
+            <div id="skills" class="section">
+                <h2 class="section-title">Skills</h2>
+                <div class="skill-container">
+                    <article class="skill-card">
+                        <h4>HTML</h4>
+                        <p>習熟度<br>★★★☆☆</p>
+                        <p>タグの違いや使い分けなど丁寧に着実に学んでいます。</p>
+                    </article>
+                    <article class="skill-card">
+                        <h4>CSS</h4>
+                        <p>習熟度<br>★★☆☆☆</p>
+                        <p>見やすくわかりやすいソースコードを目標としています。</p>
+                    </article>
+                    <article class="skill-card">
+                        <h4>Python</h4>
+                        <p>習熟度<br>★☆☆☆☆</p>
+                        <p>簡単なゲームのコードを真似ることから始めています。</p>
+                    </article>
+                </div>
+            </div>
+
+            <div id="portfolio" class="section">
+                <h2 class="section-title">Portfolio</h2>
+                <h4>《デザイン》</h4>
+                <div class="article">
+                    <p>校内に掲示する応援ポスターを制作しました！</p>
+                    <img src="/img/poster1.jpg" alt="応援ポスター">
+
+                </div>
+
+            </div>
+
+        </main>
+
+        <aside id="sidebar">
+            <div class="name">
+                <h3 class="side-title">Terashima nanako</h3>
+                <p>バックエンドエンジニアになることが最終目標。猫飼い。成人してからゲームにハマりました。AC、ソウル系のフロムゲーやエースコンバットシリーズが特に好きです。</p>
+            </div>
+
+            <div class="learning-log">
+                <h3 class="side-title">Learning log</h3>
+                <ul>
+                    <li>2026.06.29<br>profileサイト作成</li>
+                    <li>2026.07.10<br>javascript勉強開始</li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+    <footer>
+        <div class="contact wrapper">
+            <h2 class="section-title">Contact</h2>
+
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
