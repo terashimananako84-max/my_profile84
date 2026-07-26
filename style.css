@@ -1,16 +1,6 @@
 @charset "UTF-8";
 
 /* ----------------------------
-関数
------------------------------*/
-:root {
-    --main-color: #333;
-    --menu-color: #3b3b3b;
-    --text-light: #cbcbcb;
-    --white: #fff;
-}
-
-/* ----------------------------
 共通部分 
 -----------------------------*/
 html {
@@ -20,7 +10,8 @@ html {
 }
 
 body {
-    color: #333;
+    background-color: #333;
+    color: #fff;
     font-size: 1rem;
 }
 
@@ -41,12 +32,14 @@ h2 {
     scroll-margin-top: 100px;
 }
 
-/* ----------------------------
-共通クラス
------------------------------*/
+main section {
+    margin-bottom: 40px;
+}
+
+
 .wrapper {
     max-width: 1200px;
-    padding: 0 16px;
+    padding: 0 100px;
     margin: 0 auto;
 }
 
@@ -55,12 +48,18 @@ h2 {
     margin: 1rem 0;
 }
 
+#container {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px auto;
+}
+
 /* ---------------------------------------
 header
 ------------------------------------------ */
 #header {
     max-width: 100%;
-    background-color: #ffffff;
+    background-color: #333;
     position: fixed;
     top: 0;
     left: 0;
@@ -71,25 +70,25 @@ header
 #header .site-title {
     font-size: 1.5rem;
     margin: 0;
-    padding: 10px 20px;
+    padding: 10px 120px;
     line-height: 1.5;
 }
 
 #header .site-title a {
     display: inline-block;
-    color: #333;
+    color: #fff;
 }
 
 .nav {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background-color: var(--main-color);
+    background-color: #fff;
 }
 
 #header ul {
     display: flex;
-    padding: 10px 0;
+    padding: 10px 100px;
 }
 
 #header li {
@@ -98,7 +97,7 @@ header
 }
 
 #header a {
-    color: #cbcbcb;
+    color: #333;
     font-size: 1rem;
 }
 
@@ -188,37 +187,33 @@ pickup
 /* ---------------------------------------
 skill
 ------------------------------------------ */
-#container {
-    display: flex;
-    justify-content: space-between;
-    margin: 40px auto;
-}
 
-main {
-    width: 70%;
-}
 
-main section {
-    margin-bottom: 40px;
-}
 
-.skill-container {
+
+/* ---------------------------------------
+product
+------------------------------------------*/
+
+.project-container {
     display: flex;
     gap: 20px;
 }
 
-.skill-card {
+.project-items {
     width: 250px;
-    background: rgb(241, 244, 250);
+    background: #fff;
     border-radius: 1rem;
     padding: 20px;
 }
 
-.skill-card h4 {
+.project-title {
+    color: #333;
+    font-size: 0.8rem;
     margin: 0.5rem 0;
 }
 
-.skill-card p {
+.project-items p {
     font-size: 0.8rem;
     margin: 0.5rem 0;
 }
@@ -237,37 +232,159 @@ aside
 #sidebar {
     width: 25%;
     padding: 20px;
+    margin-top: 80px;
 
 }
 
-#sidebar .side-title {
+#sidebar h3 {
     font-size: 1rem;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     text-align: center;
+    color: #fff;
 }
 
-#sidebar p {
+#sidebar {
     font-size: 0.8rem;
     line-height: 1.6;
     margin-bottom: 30px;
     text-align: left;
 }
 
-.learning-log ul {
+.study-log ul {
     text-align: center;
     border-top: 1px solid #ccc;
 }
 
-.learning-log li {
+.study-log li {
     font-size: 0.8rem;
     padding: 10px 0;
     border-bottom: 1px solid #ccc;
+}
+
+.study-log li a {
+    color: #fff;
+}
+
+/* ---------------------------------------
+contact
+------------------------------------------*/
+
+
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding: 0 50px;
+    background-color: #fff;
+    color: #333;
+    border-radius: 1rem;
+}
+
+.contact-info div {
+    font-size: 1rem;
+    padding: 10px;
+}
+
+.contact-info,
+.contact-form {
+    width: 45%;
+    margin: 10px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 80%;
+    border: solid 1px #333;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin: 0 10px;
+}
+
+.contact-form .button {
+    width: 100px;
+    color: #fff;
+    background-color: #3b3b3b;
+    border: #333 solid 1px;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.contact-form .button:hover {
+    color: #333;
+    background-color: #fff;
+    text-align: center;
+}
+
+/* ---------------------------------------
+footer
+------------------------------------------ */
+#footer {
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-size: .5em;
+}
+
+/* ---------------------------------------
+self study
+------------------------------------------ */
+#self-study {
+    margin-top: 80px;
+    background-color: #333;
+    color: #fff;
+    margin: 50px;
+}
+
+.selfstudy-content {
+    display: flex;
+}
+
+.study-items {
+    background-color: #444;
+    padding: 20px;
+    margin: 30px;
+    border-radius: 10px;
+}
+
+.study-items h5 {
+    margin-bottom: 10px;
+}
+
+.study-items img {
+    display: block;
+    width: 40%;
+
+}
+
+.code-box {
+    width: 800px;
+    max-width: 100%;
+    height: 200px;
+    overflow: auto;
+    background: #fff;
+    color: #333;
+    padding: 20px;
+    margin: 10px;
+}
+
+.code-box pre {
+    margin: 0;
+}
+
+.code-box code {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 16px;
+    line-height: 1.5;
 }
 
 /* ---------------------------------------
 sp
 ------------------------------------------ */
 @media screen and (max-width: 768px) {
+    body {
+        background-color: #ccc;
+        color: #333;
+    }
 
     /* header */
     #header {
@@ -278,6 +395,7 @@ sp
 
     .hamburger {
         display: block;
+        color: #fff;
     }
 
     .nav {
@@ -288,7 +406,7 @@ sp
         right: 0;
         width: 100%;
         height: 100vh;
-        background-color: #3b3b3bf7;
+        background-color: #d1d1d1d7;
         z-index: 1000;
     }
 

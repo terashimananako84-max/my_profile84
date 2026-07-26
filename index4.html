@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>self study</title>
+    <!-- ファビコン -->
+    <link rel="icon" href="テキスト(仮)">
+    <!-- リセットCSS -->
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <!-- オリジナルCSS -->
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/e1691fde90.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header id="header">
+        <h1 class="site-title">
+            <a href="index.html">My Profile</a>
+        </h1>
+
+    </header>
+    <div class="selfstudy-content">
+        <main id="self-study">
+
+            <h2>「5秒ごとに画像をスライド」</h2>
+            <p>目的：ifを使った繰り返しを作る</p>
+            <div class="study-items">
+                <h3>イメージ</h3>
+
+            </div>
+            <div class="study-items">
+                <h3>HTML</h3>
+                <div class="code-box">
+                    <pre><code>
+&lt;ul class="image-slides">
+      &lt;li>&lt;img src="img/01.jpg">&lt;/li>
+      &lt;li>&lt;img src="img/02.jpg">&lt;/li>
+      &lt;li>&lt;img src="img/03.jpg">&lt;/li>
+&lt;/ul>
+                    </code></pre>
+                </div>
+                <!-- <h5>メモ:</h5>
+                <h5>解決法:<br>
+                </h5> -->
+
+            </div>
+            <div class="study-items">
+                <h3>JavaScript</h3>
+                <div class="code-box">
+                    <pre><code>
+const slides = document.querySelectorAll(".image-slides li");
+
+let current = 0;
+slides[current].classList.add("active");
+
+setInterval(() => {
+    slides[current].classList.remove("active");
+    current++;
+    if (current >= slides.length) {
+        current = 0;
+    }
+    slides[current].classList.add("active");
+}, 5000);
+                    </code></pre>
+                </div>
+                <h5>メモ:<br>
+                    変数current=0 1枚目の画像<br>
+                    setInterval(() => {}, 5000); 5秒ごとに繰り返す<br>
+                    current++; current +=1<br>
+                    if (current >= slides.length) {current = 0;} 画像数をcurrentが上回ったら1枚目に戻る
+                </h5>
+                <h5>解説:<br>
+                    条件は()で囲む<br>
+                    {}は処理の範囲
+                </h5>
+
+            </div>
+
+
+        </main>
+        <aside id="sidebar">
+            <div class="study-log">
+                <h3>Study Log</h3>
+                <ul>
+                    <li><a href="index2.html">テキスト表示</a></li>
+                    <li><a href="index3.html">入力フォーム</a></li>
+                    <li><a href="index4.html">jsでスライド</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

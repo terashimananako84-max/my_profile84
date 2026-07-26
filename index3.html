@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>self study</title>
+    <!-- ファビコン -->
+    <link rel="icon" href="テキスト(仮)">
+    <!-- リセットCSS -->
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <!-- オリジナルCSS -->
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/e1691fde90.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header id="header">
+        <h1 class="site-title">
+            <a href="index.html">My Profile</a>
+        </h1>
+
+    </header>
+    <div class="selfstudy-content">
+        <main id="self-study">
+
+            <h2>「入力フォーム作成」</h2>
+            <p>目的：getを使ってみる</p>
+            <div class="study-items">
+                <h3>イメージ</h3>
+                <img src="img/thumbnail2.png" alt="入力フォーム">
+                <img src="img/thumbnail2.1.png" alt="結果">
+            </div>
+            <div class="study-items">
+                <h3>HTML</h3>
+                <div class="code-box">
+                    <pre><code>
+&lt;h1&gt;名前を入力してください&lt;/h1&gt;
+&lt;form action="result.php" method="get"&gt;
+    &lt;input type="text" name="username"&gt;
+    &lt;input type="submit" value="送信"&gt;
+&lt;/form&gt;
+                    </code></pre>
+                </div>
+                <h5>メモ:&lt;&gt;をタグとして認識されてしまった</h5>
+                <h5>解決法:<br>①HTMLエスケープ特殊文字の使用<br>
+                    ②HTMLにJavaScriptで外部ファイルとして読み込む<br>
+                    ③Markdown形式で書く
+                </h5>
+
+            </div>
+            <div class="study-items">
+                <h3>PHP</h3>
+                <div class="code-box">
+                    <pre><code>
+&lt;?php
+$username = $_GET["username"];
+echo "&lt;h1&gt;こんにちは！" . $username . "さん&lt;/h1&gt;";
+&gt;
+                    </code></pre>
+                </div>
+                <h5>メモ:PHPなどのサーバーサイド言語はローカルサーバーが必要<br>
+                    解決法:<br>
+                    ①PHPの組み込みサーバーを使用。php -S localhost:8000<br>
+                    ①WSLでサーバーを起動。php -S 0.0.0.0:8000
+
+                </h5>
+
+            </div>
+
+
+        </main>
+        <aside id="sidebar">
+            <div class="study-log">
+                <h3>Study Log</h3>
+                <ul>
+                    <li><a href="index2.html">テキスト表示</a></li>
+                    <li><a href="index3.html">入力フォーム</a></li>
+                    <li><a href="index4.html">jsでスライド</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
