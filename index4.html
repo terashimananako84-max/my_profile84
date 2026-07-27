@@ -28,7 +28,16 @@
             <p>目的：ifを使った繰り返しを作る</p>
             <div class="study-items">
                 <h3>イメージ</h3>
-
+                <ul class="image-slides">
+                    <li><img src="img/slides1.jpg"></li>
+                    <li><img src="img/slides2.jpg"></li>
+                    <li><img src="img/slides3.jpg"></li>
+                </ul>
+                <h5>メモ:<br>
+                    JS=存在しない要素を操作しようとするとエラー(null)になってそれ以降の処理が止まる</h5>
+                <h5>解決法:<br>
+                    要素があるときだけ実行させる if (要素) {処理}
+                </h5>
             </div>
             <div class="study-items">
                 <h3>HTML</h3>
@@ -41,10 +50,33 @@
 &lt;/ul>
                     </code></pre>
                 </div>
-                <!-- <h5>メモ:</h5>
-                <h5>解決法:<br>
-                </h5> -->
-
+            </div>
+            <div class="study-items">
+                <h3>CSS</h3>
+                <div class="code-box">
+                    <pre><code>
+.image-slides {
+    position: relative;
+    width: 100%;
+    height: 200px;
+}
+.image-slides img {
+    display: block;
+    width: 200px;
+    object-fit: cover;
+}
+.image-slides li {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: 1.5s ease;
+    list-style: none;
+}
+.image-slides li.active {
+    opacity: 1;
+}
+                    </code></pre>
+                </div>
             </div>
             <div class="study-items">
                 <h3>JavaScript</h3>
@@ -75,10 +107,7 @@ setInterval(() => {
                     条件は()で囲む<br>
                     {}は処理の範囲
                 </h5>
-
             </div>
-
-
         </main>
         <aside id="sidebar">
             <div class="study-log">
@@ -86,7 +115,7 @@ setInterval(() => {
                 <ul>
                     <li><a href="index2.html">テキスト表示</a></li>
                     <li><a href="index3.html">入力フォーム</a></li>
-                    <li><a href="index4.html">jsでスライド</a></li>
+                    <li><a href="index4.html">スライド</a></li>
                 </ul>
             </div>
         </aside>
