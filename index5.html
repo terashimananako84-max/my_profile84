@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>self study</title>
+    <!-- ファビコン -->
+    <link rel="icon" href="テキスト(仮)">
+    <!-- リセットCSS -->
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <!-- オリジナルCSS -->
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/e1691fde90.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="loading">
+        <p class="loading-text loading-blink">Loading...</p>
+        <div id="loading-screen"></div>
+    </div>
+
+    <header id="header">
+        <h1 class="site-title">
+            <a href="index.html">My Profile</a>
+        </h1>
+
+    </header>
+    <div class="selfstudy-content">
+        <main id="self-study">
+
+            <h2>「ローディング画面を表示する」</h2>
+            <p>目的：アニメーションの起点と終了後の処理を理解する</p>
+            <div class="study-items">
+                <h3>イメージ</h3>
+            </div>
+
+            <div class="study-items">
+                <h3>HTML</h3>
+
+                <div class="code-box">
+                    <pre><code>
+&lt;div class="loading"&gt;
+ &lt;p class="loading-text loading-blink"&gt;Loading...&lt;/p&gt;
+ &lt;div id="loading-screen"&gt;&lt;/div&gt;
+&lt;/div&gt;
+                    </code></pre>
+                </div>
+
+            </div>
+
+            <div class="study-items">
+                <h3>CSS</h3>
+
+                <div class="code-box">
+                    <pre><code>
+#loading-grey {
+    background-color: lightgrey;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: grid;
+    place-items: center;
+}
+#loading-screen-green {
+    background-color: lightgreen;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    transform: translateY(100vh);
+}
+.load-blink {
+    animation: blink 1s infinite;
+}
+                        </code></pre>
+                </div>
+
+
+                <!-- 解説1 -->
+                <details class="study-detail">
+                    <summary>position: fixed;</summary>
+                    <div class="study-description">
+                        <p>要素を画面に固定<br>
+                            ビューポートを基準に配置され、ローディング画面がページ全体を覆える
+                        </p>
+                    </div>
+                </details>
+                <!-- 解説2 -->
+                <details class="study-detail">
+                    <summary>inset: 0;</summary>
+                    <div class="study-description">要素の上下左右すべてを0にする<br>
+                        <ul>
+                            <li>top: 0;</li>
+                            <li>right: 0;</li>
+                            <li>bottom: 0;</li>
+                            <li>left: 0;</li>
+                        </ul>
+                        をまとめたようなもの<br>
+                        (<strong>position: fixed;</strong>
+                        と組み合わせると、画面いっぱいに広がる要素になる)
+                    </div>
+                </details>
+                <!-- 解説3 -->
+                <details class="study-detail">
+                    <summary>place-items: center</summary>
+                    <div class="study-description">上下左右の両方向に中央揃えする<br>
+                        <ul>
+                            <li>align-items:center;</li>
+                            <li>justify-items: center;</li>
+                        </ul>
+                        をまとめたようなもの
+                    </div>
+                </details>
+                <!-- 解説4 -->
+                <details class="study-detail">
+                    <summary>transform: translateY(100vh);</summary>
+                    <div class="study-description">
+                        <p>要素をY軸に移動させる。</p>
+                        <ul>
+                            <li>
+                                <strong>100vh</strong>
+                                ：画面の高さ分だけ下に移動
+                            </li>
+                        </ul>
+                    </div>
+                </details>
+                <!-- 解説5 -->
+                <details class="study-detail">
+                    <summary>animation: blink 1s infinite;</summary>
+                    <div class="study-description">
+                        <ul>
+                            <li>
+                                <strong>blink</strong>
+                                ：(定義されている)アニメーションの名前
+                            </li>
+                            <li>
+                                <strong>1s</strong>
+                                ：1秒に1回
+                            </li>
+                            <li>
+                                <strong>infinite</strong>
+                                ：無限に繰り返す
+                            </li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+
+            <div class="study-items">
+                <h3>JavaScript</h3>
+
+                <div class="code-box">
+                    <pre><code>
+const loadingAreaGrey = document.querySelector('#loading-grey');
+const loadingAreaGreen = document.querySelector('#loading-screen-green');
+const loadingText = document.querySelector('#loading p');
+
+window.addEventListener('load', () => {
+ loadingAreaGrey.animate(
+    {
+      opacity: [1, 0],
+      visibility: 'hidden',
+    },
+    {
+      duration: 2000,
+      delay: 1200,
+      easing: 'ease',
+      fill: 'forwards',
+    }
+  );
+
+  loadingAreaGreen.animate(
+    {
+      transform: [
+        'translateY(100vh)',
+        'translateY(0)',
+        'translateY(-100vh)'
+        ]
+    },
+    {
+      duration: 2000,
+      delay: 800,
+      easing: 'ease',
+      fill: 'forwards',
+    }
+  );
+
+  loadingText.animate(
+    [
+      {
+        opacity: 1,
+        offset: .8
+      },
+      {
+        opacity: 0,
+        offset: 1
+      },
+    ],
+    {
+      duration: 1200,
+      easing: 'ease',
+      fill: 'forwards',
+    }
+  );
+});
+                        </code></pre>
+                </div>
+
+                <!-- 解説1 -->
+                <details class="study-detail">
+                    <summary>window.addEventListener('load', () => {})</summary>
+                    <div class="study-description">
+                        <p> ページの読み込みが完了したら実行する。 </p>
+                        <ul>
+                            <li>
+                                <strong>load</strong>
+                                ：HTMLだけではなく、画像やCSSなどのリソースも含めて
+                                読み込みが完了したタイミング
+                            </li>
+                            <li>
+                                ローディング画面を読み込み完了後に非表示にする際などに使用
+                            </li>
+                        </ul>
+                    </div>
+                </details>
+                <!-- 解説2 -->
+                <details class="study-detail">
+                    <summary>loadingAreaGrey.animate()</summary>
+                    <div class="study-description">
+                        <p>要素のアニメーションを実行する。</p>
+
+                        <h4>第一引数：アニメーションのプロパティ</h4>
+                        <h5>opacity</h5>
+                        <p> [1, 0] →<br>
+                            1：完全に表示<br>
+                            0：完全に透明
+                        </p>
+                        <h5>visibility</h5>
+                        <p>'hidden' → アニメーション後に要素を非表示にする</p>
+                        <p class="note">
+                            ※ opacity: 0だけでは要素自体は残っているため、
+                            クリックなどの操作ができてしまう。
+                        </p>
+
+                        <h4>第二引数：アニメーションの設定</h4>
+                        <h5>duration</h5>
+                        <p>アニメーションの時間（ミリ秒）</p>
+                        <h5>delay</h5>
+                        <p>アニメーション開始までの遅延時間</p>
+                        <h5>easing</h5>
+                        <p>アニメーションの速度変化 </p>
+                        <ul>
+                            <li>linear：一定の速度</li>
+                            <li>ease-in：最初がゆっくり</li>
+                            <li>ease-out：最後がゆっくり</li>
+                            <li>ease：最初と最後がゆっくり</li>
+                        </ul>
+                        <h5>fill</h5>
+                        <p> 'forwards' → アニメーション終了後も最終状態を保持 </p>
+                        <h5>translateY</h5>
+                        <p> 要素を上下に移動させる。 </p>
+                        <ul>
+                            <li>100vh：画面の下からスタート</li>
+                            <li>0：画面中央</li>
+                            <li>-100vh：画面の上へ移動</li>
+                        </ul>
+                        <p> vh = viewport（画面）の高さ<br>
+                            100vh = 画面1個分の高さ
+                        </p>
+                    </div>
+                </details>
+                <!-- 解説3 -->
+                <details class="study-detail">
+                    <summary>loadingText.animate()</summary>
+                    <div class="study-description">
+                        <p> ローディングテキストを徐々に消すアニメーション。</p>
+                        <h5>offset</h5>
+                        <p>アニメーションの進行度を0〜1で指定する。</p>
+                        <ul>
+                            <li>0：アニメーション開始時</li>
+                            <li>1：アニメーション終了時</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        </main>
+
+        <aside id="sidebar">
+            <div class="study-log">
+                <h3>Study Log</h3>
+                <ul>
+                    <li><a href="index2.html">テキスト表示</a></li>
+                    <li><a href="index3.html">入力フォーム</a></li>
+                    <li><a href="index4.html">スライド</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

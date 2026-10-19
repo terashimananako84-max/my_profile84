@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>self study</title>
+    <!-- ファビコン -->
+    <link rel="icon" href="テキスト(仮)">
+    <!-- リセットCSS -->
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <!-- オリジナルCSS -->
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/e1691fde90.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="loading">
+        <p class="loading-text loading-blink">Loading...</p>
+        <div id="loading-screen"></div>
+    </div>
+
+    <header id="header">
+        <h1 class="site-title">
+            <a href="index.html">My Profile</a>
+        </h1>
+
+    </header>
+    <div class="selfstudy-content">
+        <main id="self-study">
+
+            <h2>「入力フォームのエラー分岐」</h2>
+            <p>目的：入力フォームのバリデーションとエラー表示の方法を理解する</p>
+            <div class="study-items">
+                <h3>イメージ</h3>
+            </div>
+
+            <div class="study-items">
+                <h3>PHP(サーバーサイド)</h3>
+
+                <div class="code-box">
+                    <pre><code>
+&lt;h3&gt;あなたについて教えてください&lt;/h3&gt;
+&lt;form action="result.php" method="post" id="userform"&gt;
+    &lt;label for="name"&gt;名前:
+        &lt;input type="text" id="name" name="name" required&gt;&lt;br&gt;
+    &lt;/label&gt;
+
+    &lt;label for="birthDate"&gt;生年月日:
+        &lt;input type="text" id="birthDate" name="birthDate" required placeholder="2026/08/31"&gt;&lt;br&gt;
+    &lt;/label&gt;
+
+    &lt;label for="maikAddress"&gt;メールアドレス:
+        &lt;input type="email" id="mailAddress" name="mailAddress" required placeholder="example@example.com"&gt;&lt;br&gt;
+    &lt;/label&gt;
+
+    &lt;button type="submit"&gt;送信&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;div id="errorMessage"&gt;
+    &lt;p id="errorText"&gt;&lt;/p&gt;
+    &lt;button type="button" id="closeError"&gt;閉じる&lt;/button&gt;
+&lt;/div&gt;
+&lt;script src="script.js"&gt;&lt;/script&gt;
+                    </code></pre>
+                </div>
+
+            </div>
+
+            <div class="study-items">
+                <h3>CSS</h3>
+
+                <div class="code-box">
+                    <pre><code>
+#errorMessage {
+    display: none;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #000;
+    padding: 10px;
+    width: 250px;
+}
+
+#errorText {
+    color: red;
+}
+
+#closeError {
+    display: block;
+    margin-top: 10px;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+                        </code></pre>
+                </div>
+            </div>
+
+
+            <div class="study-items">
+                <h3>PHP</h3>
+                <div class="code-box">
+                    <pre><code>
+&lt;?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+    if (isset($_POST["name"],$_POST["birthDate"],$_POST["mailAddress"])) {
+        $name = $_POST["name"];
+        $birthDate = $_POST["birthDate"];
+        $mailAddress = $_POST["mailAddress"];
+        // 未入力
+        if ($name === "" || $birthDate ==="" || $mailAddress ===""){
+            echo "&lt;p&gt;文字を入力してください。&lt;/p&gt;";
+        }else {
+            // 生年月日形式
+            $birthday = DateTime::createFromFormat('Y/m/d', $birthDate);
+            if (
+                $birthday === false ||
+                $birthday->format('Y/m/d') !== $birthDate
+            ) {
+                echo "&lt;p&gt;正しい生年月日を入力してください。&lt;/p&gt;";
+
+            }else {
+                // メールアドレス形式
+                if (!filter_var($mailAddress, FILTER_VALIDATE_EMAIL)) {
+                    echo "&lt;p&gt;正しいメールアドレスを入力してください。&lt;/p&gt;";
+                }else {
+                    // 未来の日付
+                    $today = new DateTime();
+                    if ($birthday > $today) {
+                        echo "&lt;p&gt;未来の日付は入力できません。&lt;/p&gt;";
+                    }else {
+                        // 名前の文字数制限
+                        if (mb_strlen($name) > 20) {
+                            echo "&lt;p&gt;名前は20文字以内で入力してください。&lt;/p&gt;";
+                        }else {
+                            $age = $today->diff($birthday)->y;
+                            echo "&lt;p&gt;こんにちは、"
+                            .htmlspecialchars($name, ENT_QUOTES, "UTF-8")
+                            . "さん！&lt;/p&gt;";
+                            if ($age >= 20){
+                                echo "&lt;p&gt;"
+                                . htmlspecialchars($age, ENT_QUOTES, "UTF-8")
+                                . "歳なんですね！&lt;/p&gt;";
+                            }elseif ($age >= 18){
+                                echo "&lt;p&gt;"
+                                . htmlspecialchars($age, ENT_QUOTES, "UTF-8")
+                                . "歳なんですね！&lt;/p&gt;";
+                                echo "&lt;p&gt;"
+                                . "成人されているんですね！&lt;/p&gt;";
+                            }else {
+                                echo "&lt;p&gt;"
+                                . htmlspecialchars($age, ENT_QUOTES, "UTF-8")
+                                . "歳なんですね！&lt;/p&gt;";
+                                echo "&lt;p&gt;"
+                                . "成人されるのが楽しみですね！&lt;/p&gt;";
+                            }
+                            echo "&lt;p&gt;メールアドレスは"
+                                    . htmlspecialchars($mailAddress, ENT_QUOTES, "UTF-8")
+                                    . "ですね！&lt;/p&gt;";
+                        }
+                    }
+                }
+            }
+        }
+    }
+?&gt;
+                    </code></pre>
+                </div>
+                <!-- 解説1 -->
+                <details class="study-detail">
+                    <summary>isset()</summary>
+                    <div class="study-description">
+                        <p> 変数が設定されているかを確認する</p>
+                        <ul>
+                            <li>
+                                <strong>$_POST</strong>
+                                ：POSTデータを $_POST から取得することができる
+                            </li>
+                            <li>
+                                フォーム送信前は$_POST[""]は存在しないため、isset()で確認する必要がある
+                            </li>
+                        </ul>
+                    </div>
+                </details>
+                <!-- 解説2 -->
+                <details class="study-detail">
+                    <summary>if (isset($_POST["name"])) {$name = $_POST["name"];}</summary>
+                    <div class="study-description">
+                        <p>POSTデータが送られてきている場合だけ、{}の処理をする<br>
+                            フォームから送られてきたデータを $name という変数に入れる
+                        </p>
+                    </div>
+                </details>
+                <!-- 解説3 -->
+                <details class="study-detail">
+                    <summary>$name === ""</summary>
+                    <div class="study-description">
+                        <p>空欄<br>
+                            スペースだけ入力した場合も空欄として扱いたいのであれば、trim()を使う</p>
+                        <h5>|| は「または」<br>&& は「かつ」</h5>
+                    </div>
+                </details>
+                <!-- 解説4 -->
+                <details class="study-detail">
+                    <summary>$birthday = DateTime::createFromFormat('Y/m/d', $birthDate);</summary>
+                    <div class="study-description">
+                        <p>$birthDateのデータを指定した形式('Y/m/d')で DateTimeオブジェクト(日時を扱うクラス)に変換して代入
+                        </p>
+                        <h5>('Y/m/d'):4桁の年/2桁の月/2桁の日</h5>
+                    </div>
+                </details>
+                <!-- 解説5 -->
+                <details class="study-detail">
+                    <summary>$birthday === false</summary>
+                    <div class="study-description">
+                        <p>$birthdayへの変換に失敗したかのチェック
+                        </p>
+                        <p class="note">
+                            ※ これがtrue なら「不正な日付」となる<br>
+                            例えば、$birthDate = 'abc';の場合は、=== falseはtrueになる
+                        </p>
+                    </div>
+                </details>
+                <!-- 解説6 -->
+                <details class="study-detail">
+                    <summary>$birthday->format('Y/m/d') !== $birthDate</summary>
+                    <div class="study-description">
+                        <p>DateTimeオブジェクト(=$birthday)を、
+                            -> format(''); でY/m/d形式の文字列に戻して比較する</p>
+                        <p class="note">※PHPのDateTimeは日付を補正してしまうので存在しない日付をチェックする</p>
+                        <ul>
+                            <li>
+                                <strong>「 !== 」</strong>
+                                ：比較演算子で元の$birthDateと(値も型も)完全に一致”しない”かどうかのチェック
+                            </li>
+                            <li>
+                                <strong>「 != 」</strong>
+                                ：比較演算子で元の$birthDateと等しくないかどうかのチェック
+                            </li>
+                        </ul>
+                    </div>
+                </details>
+                <!-- 解説7 -->
+                <details class="study-detail">
+                    <summary>filter_var()</summary>
+                    <div class="study-description">
+                        <p>PHPで値をvalidate*1したり、sanitize*2したりするための汎用的な関数<br>
+                        <ul>
+                            <li>*1 validate：値が正しいかどうかを検証すること</li>
+                            <li>*2 sanitize：値を安全な形式に変換すること</li>
+                        </ul>
+                        </p>
+                        <p>今回はメールアドレスの形式が正しいかどうかを検証するために使用</p>
+                        <p></p>
+                        <strong>filter_var(チェックする値, 何をするか)</strong>
+                        <ul>
+                            <li>├─ FILTER_VALIDATE_EMAIL → メールアドレス</li>
+                            <li>├─ FILTER_VALIDATE_INT → 整数</li>
+                            <li>├─ FILTER_VALIDATE_URL → URL</li>
+                            <li>├─ FILTER_VALIDATE_IP → IPアドレス</li>
+                        </ul>
+                        <p class="note">※ filter_var()は、PHP5.2.0以降で使用可能</p>
+                    </div>
+                </details>
+                <!-- 解説8 -->
+                <details class="study-detail">
+                    <summary>$today = new DateTime();</summary>
+                    <div class="study-description">
+                        <p>DateTimeクラスのインスタンスを作成。()内に指定していないので現在の日時になる<br>
+                        <ul>
+                            <li>$date = new DateTime('2026-01-01'); →2026年1月1日の日時オブジェクト</li>
+                            <li>$date = new DateTime('tomorrow'); →明日の日時オブジェクト</li>
+                        </ul>
+                        </p>
+                    </div>
+                </details>
+                <!-- 解説9 -->
+                <details class="study-detail">
+                    <summary>if (mb_strlen($name) > 20) {}</summary>
+                    <div class="study-description">
+                        <p>文字列の長さをバイト数ではなく、マルチバイト文字を考慮して文字数で取得する関数<br>
+                            mb_strlen(文字列, 文字コード)
+                            文字コードを省略した場合は、内部文字エンコーディングが使用される
+                        </p>
+                    </div>
+                </details>
+                <!-- 解説10 -->
+                <details class="study-detail">
+                    <summary>$age = $today->diff($birthday)->y;</summary>
+                    <div class="study-description">
+                        <p>DateTimeオブジェクト同士の差を計算し、年数を取得する<br>
+                            diff()メソッドはDateIntervalオブジェクトを返し、->yで年数を取得する
+                        </p>
+                    </div>
+                </details>
+                <!-- 解説11 -->
+                <details class="study-detail">
+                    <summary>htmlspecialchars($name, ENT_QUOTES, "UTF-8")</summary>
+                    <div class="study-description">
+                        <p>HTMLエスケープを行う関数。$nameの内容をHTMLで安全に表示できる形式に変換する<br>
+                            htmlspecialchars(文字列, オプション, 文字コード)
+                            ENT_QUOTESは、シングルクォートとダブルクォートをエスケープする
+                        </p>
+                    </div>
+                </details>
+            </div>
+            </details>
+
+
+            <div class="study-items">
+                <h3>JavaScript</h3>
+
+                <div class="code-box">
+                    <pre><code>
+            const form = document.getElementById("userForm");
+
+            const nameInput = document.getElementById("name");
+            const birthDateInput = document.getElementById("birthDate");
+            const mailAddressInput = document.getElementById("mailAddress");
+
+            const errorMessage = document.getElementById("errorMessage");
+            const errorText = document.getElementById("errorText");
+            const closeError = document.getElementById("closeError");
+
+            closeError.addEventListener("click", function () {
+                errorMessage.style.display = "none";
+            });
+
+            form.addEventListener("submit", function (event) {
+                const name = nameInput.value.trim();
+                const birthDate = birthDateInput.value;
+                const mailAddress = mailAddressInput.value.trim();
+                // 未入力
+                if (name === "" || birthDate === "" || mailAddress === "") {
+                    event.preventDefault();
+                    errorText.textContent = "名前と生年月日とメールアドレスを入力してください。";
+                    errorMessage.style.display = "block";
+                    return;
+                }
+                // 生年月日形式
+                if (!/^\d{4}\/\d{2}\/\d{2}$/.test(birthDate)) {
+                    event.preventDefault();
+                    errorText.textContent =
+                        "生年月日は「2026/08/31」の形式で入力してください。";
+                    errorMessage.style.display = "block";
+                    return;
+                }
+                // 存在しない日付
+                const [year, month, day] = birthDate.split("/").map(Number);
+                const date = new Date(year, month - 1, day);
+                if (
+                    date.getFullYear() !== year ||
+                    date.getMonth() !== month - 1 ||
+                    date.getDate() !== day
+                ) {
+                    event.preventDefault();
+                    errorText.textContent =
+                        "正しい生年月日を入力してください。";
+                    errorMessage.style.display = "block";
+                    return;
+                }
+                // 未来の日付
+                const today = new Date();
+                if (date > today) {
+                    event.preventDefault();
+                    errorText.textContent =
+                        "未来の日付は入力できません。";
+                    errorMessage.style.display = "block";
+                    return;
+                }
+                // 名前の文字数制限
+                if (name.length > 20) {
+                    event.preventDefault();
+                    errorText.textContent =
+                        "名前は20文字以内で入力してください。";
+                    errorMessage.style.display = "block";
+                    return;
+                }
+                // メールアドレス形式
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mailAddress)) {
+                    event.preventDefault();
+                    errorText.textContent =
+                        "正しいメールアドレスを入力してください。";
+                    errorMessage.style.display = "block";
+                    return;
+                }
+            })
+                                    </code></pre>
+                </div>
+            </div>
+    </div>
+
+
+
+    </main>
+
+    <aside id="sidebar">
+        <div class="study-log">
+            <h3>Study Log</h3>
+            <ul>
+                <li><a href="index2.html">テキスト表示</a></li>
+                <li><a href="index3.html">入力フォーム</a></li>
+                <li><a href="index4.html">スライド</a></li>
+            </ul>
+        </div>
+    </aside>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
