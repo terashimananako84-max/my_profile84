@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /* ----------------------------
-共通部分 
+共通部分
 -----------------------------*/
 html {
     font-size: 100%;
@@ -52,6 +52,24 @@ main section {
     display: flex;
     justify-content: space-between;
     margin: 40px auto;
+}
+
+/* ---------------------------------------
+loading
+------------------------------------------ */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    opacity: 0.8;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
 }
 
 /* ---------------------------------------
@@ -330,41 +348,53 @@ self study
 ------------------------------------------ */
 #self-study {
     margin-top: 80px;
+    margin: 50px 0;
+    padding: 30px;
     background-color: #333;
     color: #fff;
-    margin: 50px;
 }
 
 .selfstudy-content {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .study-items {
-    background-color: #444;
-    padding: 20px;
-    margin: 30px;
+    width: 100%;
+    padding: 25px;
+    margin: 30px 0;
     border-radius: 10px;
+    background-color: #444;
 }
 
-.study-items h5 {
-    margin-bottom: 10px;
+.study-detail summary {
+    cursor: pointer;
+    padding: 15px 20px;
+    background-color: #333;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.2s;
 }
 
-.study-items img {
-    display: block;
-    width: 40%;
 
+.study-detail summary:hover {
+    background-color: #222;
 }
 
 .code-box {
     width: 800px;
     max-width: 100%;
-    height: 200px;
+    max-height: 350px;
     overflow: auto;
     background: #fff;
     color: #333;
     padding: 20px;
-    margin: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+}
+
+.code-point {
+    color: blue;
 }
 
 .code-box pre {
@@ -377,6 +407,49 @@ self study
     line-height: 1.5;
 }
 
+.study-detail {
+    margin-top: 15px;
+}
+
+.study-description {
+    padding: 20px;
+    background-color: #555;
+    border-radius: 0 0 8px 8px;
+    line-height: 1.8;
+}
+
+.study-description h4 {
+    margin-top: 25px;
+    margin-bottom: 8px;
+    color: #9be7ff;
+}
+
+.study-items h5 {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.study-description p {
+    margin: 5px 0 15px;
+}
+
+.study-description ul {
+    padding-left: 25px;
+}
+
+.note {
+    padding: 10px 15px;
+    background-color: #444;
+    border-left: 4px solid #9be7ff;
+}
+
+/*  */
+.study-items img {
+    display: block;
+    width: 40%;
+
+}
 
 .image-slides {
     position: relative;

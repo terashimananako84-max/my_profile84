@@ -42,3 +42,29 @@ if (slides.length > 0) {
         slides[current].classList.add("active");
     }, 5000);
 }
+
+// loading screen
+const loadingScreen = document.querySelector('.loading');
+window.addEventListener('load', () => {
+    const animation = loadingScreen.animate(
+        [
+            {
+                opacity: 1,
+                visibility: 'visible',
+            },
+            {
+                opacity: 0,
+                visibility: 'hidden',
+            }
+        ],
+        {
+            duration: 2000,
+            delay: 1200,
+            easing: 'ease',
+            fill: 'forwards',
+        }
+    );
+    animation.addEventListener('finish', () => {
+        loadingScreen.style.display = 'none';
+    });
+});

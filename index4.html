@@ -78,6 +78,7 @@
                     </code></pre>
                 </div>
             </div>
+
             <div class="study-items">
                 <h3>JavaScript</h3>
                 <div class="code-box">
@@ -97,16 +98,43 @@ setInterval(() => {
 }, 5000);
                     </code></pre>
                 </div>
-                <h5>メモ:<br>
-                    変数current=0 1枚目の画像<br>
-                    setInterval(() => {}, 5000); 5秒ごとに繰り返す<br>
-                    current++; current +=1<br>
-                    if (current >= slides.length) {current = 0;} 画像数をcurrentが上回ったら1枚目に戻る
-                </h5>
-                <h5>解説:<br>
-                    条件は()で囲む<br>
-                    {}は処理の範囲
-                </h5>
+
+                <!-- 解説1 -->
+                <details class="study-detail">
+                    <summary>let current = 0;</summary>
+                    <div class="study-description">
+                        <p>変数(1枚目の画像)</p>
+                    </div>
+                </details>
+
+                <!-- 解説2 -->
+                <details class="study-detail">
+                    <summary>setInterval(() => {}, 5000);</summary>
+                    <div class="study-description">
+                        <p>5秒ごとに繰り返す</p>
+                    </div>
+                </details>
+
+                <!-- 解説3 -->
+                <details class="study-detail">
+                    <summary>current++;</summary>
+                    <div class="study-description">
+                        <p>current +=1の意味</p>
+                    </div>
+                </details>
+
+                <!-- 解説4 -->
+                <details class="study-detail">
+                    <summary>if (current >= slides.length) {current = 0;}</summary>
+                    <div class="study-description">
+                        <p>画像数をcurrentが上回ったら1枚目(current = 0)に戻る</p>
+                        <p class="note">
+                            ※ 条件は()で囲む<br>{}は処理の範囲
+                        </p>
+                    </div>
+
+                </details>
+
             </div>
         </main>
         <aside id="sidebar">
